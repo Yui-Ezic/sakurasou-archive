@@ -1,10 +1,13 @@
 import React from 'react';
 import './Home.css';
-import { BrowserRouter, Routes ,Route } from 'react-router-dom'
 
 function App() {
     return (
-        <h1>Hello, world</h1>
+        <form action="http://localhost:8081/storage/image/upload" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload"/>
+            <input type="submit" value="Upload Image" name="submit"/>
+        </form>
     );
 }
 

@@ -44,6 +44,10 @@ services:
             APP_DEBUG: 1
             PHP_IDE_CONFIG: serverName=api
             SENTRY_DSN: ''
+            S3_KEY_ID: storage_app
+            S3_KEY_SECRET: storage_pass
+            S3_ENDPOINT: http://api-storage:9000
+            S3_BUCKET: default
 
     api-php-cli:
         build:
@@ -55,6 +59,10 @@ services:
             APP_ENV: dev
             APP_DEBUG: 1
             SENTRY_DSN: ''
+            S3_KEY_ID: storage_app
+            S3_KEY_SECRET: storage_pass
+            S3_ENDPOINT: http://api-storage:9000
+            S3_BUCKET: default
 
     api-storage:
         image: minio/minio

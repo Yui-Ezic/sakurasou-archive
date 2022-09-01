@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
+
 use function App\env;
 
 require __DIR__ . '/../vendor/autoload.php';

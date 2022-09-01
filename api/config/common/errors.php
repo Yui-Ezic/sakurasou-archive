@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 use Slim\Interfaces\CallableResolverInterface;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Slim\Middleware\ErrorMiddleware;
+
 use function App\env;
 
 return [
