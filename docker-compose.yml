@@ -56,3 +56,16 @@ services:
             APP_DEBUG: 1
             SENTRY_DSN: ''
 
+    api-storage:
+        image: minio/minio
+        environment:
+            MINIO_ROOT_USER: storage_app
+            MINIO_ROOT_PASSWORD: storage_pass
+        volumes:
+            - storage:/data
+        entrypoint: sh -c 'mkdir -p /data/default && docker-entrypoint.sh minio server /data --console-address ":80"'
+        ports:
+            - "8082:80"
+
+volumes:
+    storage:
