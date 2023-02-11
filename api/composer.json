@@ -16,9 +16,11 @@
         "monolog/monolog": "^3.2",
         "php-di/php-di": "^6.4",
         "psr/container": "^1.0",
+        "ramsey/uuid": "^4.7",
         "sentry/sdk": "^3.2",
         "slim/psr7": "^1.5",
-        "slim/slim": "4.*"
+        "slim/slim": "4.*",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.5",
