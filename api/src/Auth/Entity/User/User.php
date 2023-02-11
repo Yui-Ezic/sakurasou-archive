@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Auth\Entity\User;
 
 use App\Auth\Service\PasswordHasher;
+use DateTimeImmutable;
 use DomainException;
 
 class User
@@ -15,11 +16,14 @@ class User
 
     private string $passwordHash;
 
-    public function __construct(Id $id, UserName $userName, string $passwordHash)
+    private DateTimeImmutable $joinedAt;
+
+    public function __construct(Id $id, UserName $userName, string $passwordHash, DateTimeImmutable $joinedAt)
     {
         $this->id = $id;
         $this->userName = $userName;
         $this->passwordHash = $passwordHash;
+        $this->joinedAt = $joinedAt;
     }
 
     public function changePassword(string $current, string $new, PasswordHasher $hasher): void
@@ -43,5 +47,10 @@ class User
     public function getPasswordHash(): string
     {
         return $this->passwordHash;
+    }
+
+    public function getJoinedAt(): DateTimeImmutable
+    {
+        return $this->joinedAt;
     }
 }
