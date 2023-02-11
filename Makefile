@@ -9,7 +9,7 @@ up: docker-up
 down: docker-down
 restart: down up
 
-check: lint test analyze
+check: lint test analyze api-validate-schema
 test: api-test
 lint: api-lint
 analyze: api-analyze
@@ -34,7 +34,7 @@ docker-build:
 api-clear:
 	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/cache/* var/log/*'
 
-api-init: api-composer-install api-permissions
+api-init: api-composer-install api-permissions api-wait-db api-migrations
 
 api-permissions:
 	docker run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var/cache var/log
@@ -42,8 +42,17 @@ api-permissions:
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
 
+api-wait-db:
+	docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 30
+
 api-composer-update:
 	docker-compose run --rm api-php-cli composer update
+
+api-migrations:
+	docker-compose run --rm api-php-cli composer app migrations:migrate -- --no-interaction
+
+api-validate-schema:
+	docker-compose run --rm api-php-cli composer app orm:validate-schema
 
 api-test:
 	docker-compose run --rm api-php-cli composer test

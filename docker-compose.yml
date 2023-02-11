@@ -48,6 +48,10 @@ services:
             S3_KEY_SECRET: storage_pass
             S3_ENDPOINT: http://api-storage:9000
             S3_BUCKET: default
+            DB_HOST: api-postgres
+            DB_USER: app
+            DB_PASSWORD: secret
+            DB_NAME: app
 
     api-php-cli:
         build:
@@ -63,6 +67,10 @@ services:
             S3_KEY_SECRET: storage_pass
             S3_ENDPOINT: http://api-storage:9000
             S3_BUCKET: default
+            DB_HOST: api-postgres
+            DB_USER: app
+            DB_PASSWORD: secret
+            DB_NAME: app
 
     api-storage:
         image: minio/minio
@@ -75,5 +83,17 @@ services:
         ports:
             - "8082:80"
 
+    api-postgres:
+        image: postgres:13.3-alpine
+        environment:
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: app
+        volumes:
+            - api-postgres:/var/lib/postgresql/data
+        ports:
+            - "54321:5432"
+
 volumes:
     storage:
+    api-postgres:

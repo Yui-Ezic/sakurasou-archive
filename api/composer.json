@@ -10,6 +10,8 @@
     },
     "require": {
         "php": "^8.1",
+        "doctrine/migrations": "^3.5",
+        "doctrine/orm": "^2.14",
         "laminas/laminas-config-aggregator": "^1.8",
         "league/flysystem": "^3.0",
         "league/flysystem-aws-s3-v3": "^3.0",
@@ -20,6 +22,8 @@
         "sentry/sdk": "^3.2",
         "slim/psr7": "^1.5",
         "slim/slim": "4.*",
+        "symfony/cache": "^6.2",
+        "symfony/console": "^6.2",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
@@ -48,6 +52,7 @@
         "lint": "phplint",
         "php-cs-fixer": "php-cs-fixer --config=.php-cs-fixer.php --allow-risky=yes",
         "psalm": "psalm --config=psalm.xml",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "app": "php bin/app.php --ansi"
     }
 }
