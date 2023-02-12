@@ -27,6 +27,7 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "doctrine/data-fixtures": "^1.6",
         "friendsofphp/php-cs-fixer": "^3.5",
         "lctrs/psalm-psr-container-plugin": "^1.7",
         "overtrue/phplint": "^4.0",

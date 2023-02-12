@@ -13,7 +13,7 @@ class UserName
     public function __construct(string $value)
     {
         Assert::notEmpty($value);
-        Assert::lessThan($value, 20);
+        Assert::lengthBetween($value, 2, 20);
         $this->value = $value;
     }
 
