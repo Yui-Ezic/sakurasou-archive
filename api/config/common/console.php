@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Console\Auth\CreateUserCommand;
 use Doctrine\Migrations;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand;
@@ -17,6 +18,8 @@ return [
     'config' => [
         'console' => [
             'commands' => [
+                CreateUserCommand::class,
+
                 ValidateSchemaCommand::class,
 
                 Migrations\Tools\Console\Command\ExecuteCommand::class,
