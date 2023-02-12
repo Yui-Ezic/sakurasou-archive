@@ -12,8 +12,28 @@ use function App\env;
 
 return [
     Filesystem::class => static fn (ContainerInterface $container): Filesystem => new Filesystem($container->get(FilesystemAdapter::class)),
-    FilesystemAdapter::class => static fn (ContainerInterface $container): FilesystemAdapter => new AwsS3V3Adapter($container->get(S3Client::class), $container->get('config')['storage']['bucket']),
-    S3Client::class => static fn (ContainerInterface $container): S3Client => new S3Client($container->get('config')[S3Client::class]['options']),
+    FilesystemAdapter::class => static function (ContainerInterface $container): FilesystemAdapter {
+        /**
+         * @psalm-suppress MixedArrayAccess
+         * @var string $bucket
+         */
+        $bucket = $container->get('config')['storage']['bucket'];
+        return new AwsS3V3Adapter($container->get(S3Client::class), $bucket);
+    },
+    S3Client::class => static function (ContainerInterface $container): S3Client {
+        /**
+         * @psalm-suppress MixedArrayAccess
+         * @var array{
+         *     varsion:string,
+         *     region:string,
+         *     endpoint:string,
+         *     use_path_style_endpoint:bool,
+         *     credentials:string[],
+         * } $options
+         */
+        $options = $container->get('config')[S3Client::class]['options'];
+        return new S3Client($options);
+    },
     'config' => [
         'storage' => [
             'bucket' => env('S3_BUCKET'),

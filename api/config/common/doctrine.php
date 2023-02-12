@@ -56,6 +56,9 @@ return [
             $eventManager->addEventSubscriber($subscriber);
         }
 
+        /**
+         * @psalm-suppress ArgumentTypeCoercion
+         */
         $connection = DriverManager::getConnection($settings['connection'], $config, $eventManager);
 
         return new EntityManager(

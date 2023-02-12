@@ -6,6 +6,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 use function App\env;
 
@@ -22,7 +23,7 @@ return [
          */
         $config = $container->get('config')['logger'];
 
-        $level = $config['debug'] ? Logger::DEBUG : Logger::INFO;
+        $level = $config['debug'] ? LogLevel::DEBUG : LogLevel::INFO;
 
         $log = new Logger('API');
 

@@ -29,11 +29,11 @@ class UploadAction implements RequestHandlerInterface
         $image = reset($uploadedFiles);
         // TODO: validate file is image
         try {
+            /**
+             * @psalm-suppress PossiblyNullArgument
+             */
             $this->storage->write($image->getClientFilename(), $image->getStream()->getContents());
         } catch (UnableToWriteFile $e) {
-            echo '<pre>';
-            var_dump($e);
-            exit;
         }
         return new JsonResponse(['success' => true]);
     }
