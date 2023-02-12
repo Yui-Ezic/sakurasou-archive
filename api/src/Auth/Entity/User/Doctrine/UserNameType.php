@@ -6,9 +6,9 @@ namespace App\Auth\Entity\User\Doctrine;
 
 use App\Auth\Entity\User\UserName;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
 
-final class UserNameType extends GuidType
+final class UserNameType extends StringType
 {
     public const NAME = 'auth_user_username';
 
