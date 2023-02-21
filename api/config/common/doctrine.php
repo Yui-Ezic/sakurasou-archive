@@ -87,6 +87,7 @@ return [
             'subscribers' => [],
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Auth/Entity',
+                __DIR__ . '/../../src/OAuth/Entity',
             ],
             'types' => [
                 \App\Auth\Entity\User\Doctrine\IdType::NAME => \App\Auth\Entity\User\Doctrine\IdType::class,

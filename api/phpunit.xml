@@ -8,6 +8,10 @@
          cacheResultFile="var/cache/.phpunit.result.cache"
          verbose="true">
     <testsuites>
+        <testsuite name="unit">
+            <directory>src/Frontend/Test</directory>
+            <directory>src/OAuth/Test</directory>
+        </testsuite>
         <testsuite name="functional">
             <directory>tests/Functional</directory>
         </testsuite>
